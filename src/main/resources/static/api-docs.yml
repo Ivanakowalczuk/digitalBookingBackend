@@ -1,0 +1,1613 @@
+swagger: "2.0"
+info:
+  description: >-
+    Especificaciones técnicas para consumo de la api DigitalBanking
+  version: 1.0.1
+  title: Rest Api DigitalBanking
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: soporte@digitalbanking.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: localhost:8080
+basePath: /api/v1
+tags:
+  - name: Productos
+    description: Interacciones con los productos
+  - name: Categorias
+    description: Interacciones con las categorias
+  - name: Imagenes
+    description: Interacciones con las imagenes
+  - name: Autenticacion
+    description: Autenticacion de usuarios
+  - name: Usuarios
+    description: Interacciones con los usuarios
+  - name: Roles
+    description: Interacciones con los roles
+schemes:
+  - https
+  - http
+paths:
+  /categoria/buscarTodos:
+    post:
+      tags:
+        - Categorias
+      summary: Obtiene todas las categorias
+      description: ""
+      operationId: buscarCategorias
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: []
+      deprecated: false
+  /categoria/activas:
+    post:
+      tags:
+        - Categorias
+      summary: Obtiene todas las categorias activas
+      description: ""
+      operationId: buscarCategoriasActivas
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /categoria/{id}:
+    get:
+      tags:
+        - Categorias
+      summary: Obtiene una categoria por id
+      description: ""
+      operationId: buscarCategoriaPorId
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: id
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+    delete:
+      tags:
+        - Categorias
+      summary: Elimina una categoria
+      description: ""
+      operationId: eliminarCategoria
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          name: id
+          required: true
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /categoria:
+    post:
+      tags:
+        - Categorias
+      summary: Crea una categoria nueva
+      description: ""
+      operationId: crearCategoria
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    put:
+      tags:
+        - Categorias
+      summary: Actualizar una categoria
+      description: ""
+      operationId: actualizarCategoria
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /producto/buscarTodos:
+    post:
+      tags:
+        - Productos
+      summary: Obtiene todos los productos
+      description: ""
+      operationId: buscarProductos
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /producto/aleatorio:
+    post:
+      tags:
+        - Productos
+      summary: Obtiene una cantidad de productos aleatorios
+      description: ""
+      operationId: buscarProductosAleatorios
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /producto/paginable/categoria/{idCategoria}:
+    post:
+      tags:
+        - Productos
+      summary: Obtiene todos los productos de una categoria
+      description: ""
+      operationId: buscarProductosPorCategoria
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: idCategoria
+          description: id de categoria
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /producto/{id}:
+    get:
+      tags:
+        - Productos
+      summary: Obtiene un producto por id
+      description: ""
+      operationId: buscarProductoPorId
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: id
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+    delete:
+      tags:
+        - Productos
+      summary: Elimina un producto
+      description: ""
+      operationId: eliminarProducto
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          name: id
+          required: true
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /producto/sede/{id}:
+    post:
+      tags:
+        - Productos
+      summary: Obtiene los productos disponibles en una sede
+      description: ""
+      operationId: buscarProductosPorSede
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: id de la sede
+          type: integer
+          required: true
+        - in: body
+          name: request
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /producto/ciudad/{id}:
+    post:
+      tags:
+        - Productos
+      summary: Obtiene los productos disponibles en una ciudad
+      description: ""
+      operationId: buscarProductosPorCiudad
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: id de la ciudad
+          type: integer
+          required: true
+        - in: body
+          name: request
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /producto:
+    post:
+      tags:
+        - Productos
+      summary: Crea un producto nueva
+      description: ""
+      operationId: crearProducto
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/ProductoDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    put:
+      tags:
+        - Productos
+      summary: Actualiza un producto
+      description: ""
+      operationId: actualizarProducto
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/ProductoDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ProductoDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /imagen/buscarTodos:
+    post:
+      tags:
+        - Imagenes
+      summary: Obtiene todas las imagenes
+      description: ""
+      operationId: buscarImagenes
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ImagenDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /imagen/upload:
+    post:
+      tags:
+        - Imagenes
+      summary: Carga una imagen en el bucket s3
+      description: ""
+      operationId: cargarImagen
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: imagen
+          type: file
+          description: imagen
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ImagenDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /imagen/{id}:
+    get:
+      tags:
+        - Imagenes
+      summary: Obtiene una imagen por id
+      description: ""
+      operationId: buscarImagenPorId
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: id
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ImagenDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /imagen/eliminar/{id}:
+    delete:
+      tags:
+        - Imagenes
+      summary: Elimina una imagen
+      description: ""
+      operationId: eliminarImagen
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          name: id
+          required: true
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /imagen/desactivar/{key}:
+    delete:
+      tags:
+        - Imagenes
+      summary: Desactiva una imagen
+      description: ""
+      operationId: desactivarImagen
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          name: key
+          required: true
+          description: key
+      responses:
+        "200":
+          description: Operacion exitosa
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /imagen:
+    post:
+      tags:
+        - Imagenes
+      summary: Crea una imagen nueva
+      description: ""
+      operationId: crearImagen
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/ImagenDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ImagenDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    put:
+      tags:
+        - Imagenes
+      summary: Actualizar una imagen
+      description: ""
+      operationId: actualizarImagen
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/ImagenDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/ImagenDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /rol/buscarTodos:
+    post:
+      tags:
+        - Roles
+      summary: Obtiene todos las roles
+      description: ""
+      operationId: buscarRoles
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/RolDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /rol/activas:
+    post:
+      tags:
+        - Roles
+      summary: Obtiene todos los roles activos
+      description: ""
+      operationId: buscarRolesActivas
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/RolDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /rol/{id}:
+    get:
+      tags:
+        - Roles
+      summary: Obtiene un rol por id
+      description: ""
+      operationId: buscarRolPorId
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: id
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/RolDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    delete:
+      tags:
+        - Roles
+      summary: Elimina un rol
+      description: ""
+      operationId: eliminarRol
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          name: id
+          required: true
+          description: id
+      responses:
+        "200":
+          description: Operacion exitosa
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /rol:
+    post:
+      tags:
+        - Roles
+      summary: Crea un rol nuevo
+      description: ""
+      operationId: crearRol
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/RolDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    put:
+      tags:
+        - Roles
+      summary: Actualizar un rol
+      description: ""
+      operationId: actualizarRol
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          description: request
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/CategoriaDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /autenticacion/registrar:
+    post:
+      tags:
+        - Autenticacion
+      summary: Registra un nuevo usuario en el sistema
+      description: ""
+      operationId: registrarUsuario
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/RegistroRequestDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/RegistroResponseDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /autenticacion/login:
+    post:
+      tags:
+        - Autenticacion
+      summary: Inicia sesion de un usuario registrado en el sistema
+      description: ""
+      operationId: inicioSesionUsuario
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/LoginDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/RegistroResponseDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /autenticacion/validar/{id}/{tokenValidacionCorreo}:
+    get:
+      tags:
+        - Autenticacion
+      summary: Obtiene id usuario y token para la confirmación del correo electrónico
+      description: ""
+      operationId: tokenRegistro
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          type: string
+          required: true
+          name: id
+          description: id
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        - in: path
+          type: string
+          required: true
+          name: tokenValidacion
+          description: tokenValidacion
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: No encontrado
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /usuario/buscarTodos:
+    post:
+      tags:
+        - Usuarios
+      summary: Busca todos los usuarios registrados en el sistema
+      description: ""
+      operationId: buscarUsuarios
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/PagineableDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/UsuarioDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /usuario/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtiene un usuario por id
+      description: ""
+      operationId: buscarUsuarioPorId
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+    put:
+      tags:
+        - Usuarios
+      summary: Actualiza un usuario
+      description: ""
+      operationId: actualizarUsuario
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: id
+          required: true
+          type: integer
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/ActualizarUsuarioDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /usuario/correo/{correo}:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtiene un usuario por correo
+      description: ""
+      operationId: buscarUsuarioPorCorreo
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: correo
+          description: correo
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+  /usuario:
+    post:
+      tags:
+        - Usuarios
+      summary: Crear un usuario
+      description: ""
+      operationId: crearUsuario
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: request
+          schema:
+            $ref: "#/definitions/RegistroRequestDto"
+      responses:
+        "200":
+          description: Operacion exitosa
+          schema:
+            $ref: "#/definitions/UsuarioDto"
+        "400":
+          description: Request incorrecto
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: No autorizado
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Acceso prohibido
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: Error inesperado
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - APIKeyHeader: [ ]
+      deprecated: false
+securityDefinitions:
+  APIKeyHeader:
+    type: apiKey
+    in: header
+    name: Authorization
+definitions:
+  PagineableDto:
+    type: object
+    properties:
+      pagina:
+        type: integer
+        format: int32
+      cantidad:
+        type: integer
+        format: int32
+  CategoriaDto:
+    type: object
+    properties:
+      idCategoria:
+        type: integer
+        format: int32
+      codigo:
+        type: string
+      nombre:
+        type: string
+      descripcion:
+        type: string
+      fechaCreacion:
+        type: string
+        format: datetime
+      indicadorHabilitado:
+        type: boolean
+  ProductoDto:
+    type: object
+    properties:
+      idProducto:
+        type: integer
+        format: int32
+      idCategoria:
+        type: integer
+        format: int32
+      nombre:
+        type: string
+      marca:
+        type: string
+      modelo:
+        type: string
+      precio:
+        type: number
+      descripcion:
+        type: string
+      imagen:
+        type: string
+      indicadorHabilitado:
+        type: boolean
+  ImagenDto:
+    type: object
+    properties:
+      idImagen:
+        type: integer
+        format: int32
+      keyImagen:
+        type: string
+      urlImagen:
+        type: string
+      indicadorHabilitado:
+        type: boolean
+  RolDto:
+    type: object
+    properties:
+      idRol:
+        type: integer
+        format: int32
+      codigo:
+        type: string
+      nombre:
+        type: string
+      indicadorHabilitado:
+        type: boolean
+  UsuarioDto:
+    type: object
+    properties:
+      idUsuario:
+        type: integer
+      usuario:
+        type: string
+      rol:
+        type: object
+        properties:
+          nombre:
+            type: string
+      persona:
+        type: object
+        properties:
+          nombre:
+            type: string
+          apellido:
+            type: string
+          correo:
+            type: string
+      indicadorHabilitado:
+        type: boolean
+      verificado:
+        type: boolean
+      tokenValidacionCorreo:
+        type: string
+      fechaExpiracionToken:
+        type: string
+        format: datetime
+
+  RegistroRequestDto:
+    type: object
+    properties:
+      nombre:
+        type: string
+      apellido:
+        type: string
+      correo:
+        type: string
+      usuario:
+        type: string
+      contrasenia:
+        type: string
+      rol:
+        type: integer
+        format: int32
+  ActualizarUsuarioDto:
+    type: object
+    properties:
+      idUsuario:
+        type: integer
+      nombre:
+        type: string
+      apellido:
+        type: string
+      correo:
+        type: string
+      usuario:
+        type: string
+      contrasenia:
+        type: string
+      rol:
+        type: integer
+        format: int32
+      indicadorHabilitado:
+        type: boolean
+      verificado:
+        type: boolean
+  RegistroResponseDto:
+    type: object
+    properties:
+      token:
+        type: string
+      usuario:
+        $ref: "#/definitions/UsuarioDto"
+  LoginDto:
+    type: object
+    properties:
+      usuario:
+        type: string
+      contrasenia:
+        type: string
+  Error:
+    type: object
+    properties:
+      timestamp:
+        type: integer
+        format: int32
+      status:
+        type: integer
+        format: int32
+      error:
+        type: string
+      path:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
